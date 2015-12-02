@@ -20,7 +20,7 @@
       :query-params [op]
       :summary "x+y with query-parameters"
       (let [operands (range start (inc end))
-            operators (map (fn [_] (cond "sum" +)) op)
+            operators (map (fn [op] (cond (= "sum" op) + (= "sub" op) -)) op)
             results (map #(apply % operands) operators)]
       (ok {:total operands :op results})))
 ))
