@@ -17,7 +17,10 @@
 
     (GET* "/range/:start/:end" []
       :path-params [start :- Long end :- Long]
+      :query-params [op]
       :summary "x+y with query-parameters"
-      (ok {:total (range start (inc end))}))
-
+      (let [operands (range start (inc end))
+            operators (map (fn [_] (cond "sum" +)) op)]
+      (ok {:total operands :op (map #(apply % operands) operators)})))
 ))
+
