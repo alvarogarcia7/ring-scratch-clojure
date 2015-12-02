@@ -7,8 +7,8 @@
 
 (defn operation [name]
  (cond 
- 	(= "sum" name) +
- 	(= "sub" name) -))
+ 	(= "sum" name) {:name name :operation +}
+ 	(= "sub" name) {:name name :operation -}))
 
 (defapi app
   (context* "/math" []
@@ -26,7 +26,8 @@
       :summary "x+y with query-parameters"
       (let [operands (range start (inc end))
             operators (map operation op)
-            results (map #(apply % operands) operators)]
+            results (map #(
+            	-> {(:name %) (apply (:operation %) operands)}) operators)]
       (ok {:total operands :op results})))
 ))
 
