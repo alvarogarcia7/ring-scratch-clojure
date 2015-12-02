@@ -1,3 +1,6 @@
 (use 'ring.adapter.jetty)
 (use 'hello-world.core)
 (run-jetty handler {:port 3000})
+(+ [2])
+(+ [2 3])
+(apply + [2 3])

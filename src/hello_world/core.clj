@@ -9,8 +9,8 @@
   (context* "/math" []
     :tags ["math"]
 
-    (GET* "/plus" []
-      :return Total
-      :query-params [x :- Long, y :- Long]
+    (GET* "/plus/:y" []
+      :query-params [x :- [Long]]
+      :path-params [y :- Long]
       :summary "x+y with query-parameters"
-      (ok {:total (+ x y)}))))
+      (ok {:total (apply + x) :y y :params x}))))
