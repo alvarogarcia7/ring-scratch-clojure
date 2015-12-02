@@ -5,7 +5,10 @@
 
 (s/defschema Total {:total Long})
 
-(defn operation [op] (cond (= "sum" op) + (= "sub" op) -))
+(defn operation [op]
+ (cond 
+ 	(= "sum" op) + 
+ 	(= "sub" op) -))
 
 (defapi app
   (context* "/math" []
