@@ -13,4 +13,11 @@
       :query-params [x :- [Long]]
       :path-params [y :- Long]
       :summary "x+y with query-parameters"
-      (ok {:total (apply + x) :y y :params x}))))
+      (ok {:total (apply + x) :y y :params x}))
+
+    (GET* "/range/:start/:end" []
+      :path-params [start :- Long end :- Long]
+      :summary "x+y with query-parameters"
+      (ok {:total (range start (inc end))}))
+
+))

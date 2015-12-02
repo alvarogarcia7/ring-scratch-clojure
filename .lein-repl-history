@@ -4,3 +4,6 @@
 (+ [2])
 (+ [2 3])
 (apply + [2 3])
+(range 1 2)
+(range 1 4)
+(apply + (range 1 4))
