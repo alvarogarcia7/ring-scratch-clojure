@@ -26,8 +26,7 @@
       :summary "x+y with query-parameters"
       (let [operands (range start (inc end))
             operators (map operation op)
-            results (map #(
-            	-> {(:name %) (apply (:operation %) operands)}) operators)]
+            results (map #(-> {(:name %) (apply (:operation %) operands)}) operators)]
       (ok {:total operands :op results})))
 ))
 
