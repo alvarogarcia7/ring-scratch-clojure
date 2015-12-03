@@ -25,7 +25,7 @@
 
     (GET* "/range/:start/:end" []
       :path-params [start :- Long end :- Long]
-      :query-params [op]
+      :query-params [op :- [String]]
       :summary "x+y with query-parameters"
       (let [operands (range-including start end)
             operators (map operation op)
