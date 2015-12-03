@@ -32,6 +32,6 @@
       (let [operands (range-including start end)
             operators (map operation op)
             results (map #(-> {(:name %) (apply (:operation %) operands)}) operators)]
-      (ok {:total operands :op results})))
+      (ok {:total operands :results results})))
 ))
 
