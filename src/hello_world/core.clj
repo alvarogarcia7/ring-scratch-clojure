@@ -10,6 +10,9 @@
  	(= "sum" name) {:name name :operation +}
  	(= "sub" name) {:name name :operation -}))
 
+(defn range-including [lower-bound higher-bound]
+	(range lower-bound (inc higher-bound)))
+
 (defapi app
   (context* "/math" []
     :tags ["math"]
@@ -24,7 +27,7 @@
       :path-params [start :- Long end :- Long]
       :query-params [op]
       :summary "x+y with query-parameters"
-      (let [operands (range start (inc end))
+      (let [operands (range-including start end)
             operators (map operation op)
             results (map #(-> {(:name %) (apply (:operation %) operands)}) operators)]
       (ok {:total operands :op results})))
