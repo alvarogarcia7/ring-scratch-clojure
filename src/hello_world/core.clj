@@ -7,8 +7,10 @@
 
 (defn operation [name]
  (cond 
- 	(= "sum" name) {:name name :operation +}
- 	(= "sub" name) {:name name :operation -}))
+  (= "sum" name) {:name name :operation +}
+  (= "sub" name) {:name name :operation -}
+  (= "pro" name) {:name name :operation *}))
+
 
 (defn range-including [lower-bound higher-bound]
 	(range lower-bound (inc higher-bound)))
