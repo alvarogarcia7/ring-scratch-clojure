@@ -42,10 +42,10 @@
     [status (parse-body body) headers]))
 
 
-(facts "x"
-(fact "y"
+(facts "math context"
+(fact "generates ranges"
   (let [app hw/app]
-    (fact "default parameters"
+    (fact "with the sum operation"
       (let [[status body] (get* app "/math/range/1/3?op=sum")]
         status => 200
         body =>{:total [1,2,3] :results [{:sum 6}], :op ["sum"]})))))

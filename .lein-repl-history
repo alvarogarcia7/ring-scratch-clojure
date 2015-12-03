@@ -25,3 +25,5 @@
 (autotest)
 (pst *me)
 (autotest)
+(use 'midje.repl)
+(autotest)
