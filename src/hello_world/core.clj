@@ -9,7 +9,8 @@
  (cond 
   (= "sum" name) {:name name :operation +}
   (= "sub" name) {:name name :operation -}
-  (= "pro" name) {:name name :operation *}))
+  (= "pro" name) {:name name :operation *}
+  :else {:name name :operation str}))
 
 
 (defn range-including [lower-bound higher-bound]
