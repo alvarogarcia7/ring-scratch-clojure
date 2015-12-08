@@ -49,7 +49,7 @@
          request (fn [operation-desc] (get* app range-1-3 {:op operation-desc}))]
     (fact "with the sum operation"
 
-      (defn check-body [body operation-desc]
+      (defn op-matches-description? [body operation-desc]
         (:op body) => [operation-desc])
 
       (defn ok? [status]
@@ -62,7 +62,7 @@
              operation-desc (name operation)]
         (let [[status body] (request operation-desc)]
               (ok? status)
-              (check-body body operation-desc)
+              (op-matches-description? body operation-desc)
               (check-range body)
               (:results body) =>[{operation 6}])))
 
@@ -72,7 +72,7 @@
         (let [[status body] (request operation-desc)]
           (ok? status)
           (check-range body)
-          (check-body body operation-desc)
+          (op-matches-description? body operation-desc)
           (:results body) =>[{operation "123"}])))
 
     (fact "with the subtraction operation"
@@ -80,7 +80,7 @@
                operation-desc (name operation)]
           (let [[status body] (request operation-desc)]
                 (ok? status)
-                (check-body body operation-desc)
+                (op-matches-description? body operation-desc)
                 (check-range body)
                 (:results body) => [{operation -4}])))
 
