@@ -52,9 +52,11 @@
         (:results body) =>[{:sum 6}]))
 
     (fact "with an unknown operation"
-      (let [[status body] (get* app "/math/range/1/3?op=unknown")]
-        status => 200
-        (:results body) =>[{:unknown "123"}]
-        (:op body) => ["unknown"]))
+      (let [operation :unknown
+             operation-desc (name operation)]
+        (let [[status body] (get* app (str "/math/range/1/3?op=" operation-desc))]
+          status => 200
+          (:results body) =>[{operation "123"}]
+          (:op body) => [operation-desc])))
 
       )))

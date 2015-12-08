@@ -29,3 +29,6 @@
 (autotest)
 (use 'midje.repl)
 (autotest)
+str :op
+(str :op)
+(name :op)
