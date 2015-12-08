@@ -45,12 +45,13 @@
 (facts "math context"
 (fact "generates ranges"
   (let [app hw/app
-         range-1-3 "/math/range/1/3"]
+         range-1-3 "/math/range/1/3"
+         request (fn [operation-desc] (get* app range-1-3 {:op operation-desc}))]
     (fact "with the sum operation"
 
       (let [operation :sum
              operation-desc (name operation)]
-        (let [[status body] (get* app range-1-3 {:op operation-desc})]
+        (let [[status body] (request operation-desc)]
               status => 200
               (:op body) => [operation-desc]
               (:total body) => [1,2,3]
@@ -59,7 +60,7 @@
     (fact "with an unknown operation"
       (let [operation :unknown
              operation-desc (name operation)]
-        (let [[status body] (get* app range-1-3 {:op operation-desc})]
+        (let [[status body] (request operation-desc)]
           status => 200
           (:results body) =>[{operation "123"}]
           (:op body) => [operation-desc])))
@@ -67,7 +68,7 @@
     (fact "with the subtraction operation"
       (let [operation :sub
                operation-desc (name operation)]
-          (let [[status body] (get* app range-1-3 {:op operation-desc})]
+          (let [[status body] (request operation-desc)]
                 status => 200
                 (:op body) => [operation-desc]
                 (:total body) => [1,2,3]
