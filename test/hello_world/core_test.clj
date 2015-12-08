@@ -55,7 +55,7 @@
       (defn ok? [status]
         status => 200)
 
-      (defn check-range [body]
+      (defn matches-range? [body]
         (:total body) => [1,2,3])
 
       (let [operation :sum
@@ -63,7 +63,7 @@
         (let [[status body] (request operation-desc)]
               (ok? status)
               (op-matches-description? body operation-desc)
-              (check-range body)
+              (matches-range? body)
               (:results body) =>[{operation 6}])))
 
     (fact "with an unknown operation"
@@ -71,7 +71,7 @@
              operation-desc (name operation)]
         (let [[status body] (request operation-desc)]
           (ok? status)
-          (check-range body)
+          (matches-range? body)
           (op-matches-description? body operation-desc)
           (:results body) =>[{operation "123"}])))
 
@@ -81,7 +81,7 @@
           (let [[status body] (request operation-desc)]
                 (ok? status)
                 (op-matches-description? body operation-desc)
-                (check-range body)
+                (matches-range? body)
                 (:results body) => [{operation -4}])))
 
       )))
