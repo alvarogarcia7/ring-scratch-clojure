@@ -55,12 +55,15 @@
       (defn ok? [status]
         status => 200)
 
+      (defn check-range [body]
+        (:total body) => [1,2,3])
+
       (let [operation :sum
              operation-desc (name operation)]
         (let [[status body] (request operation-desc)]
               (ok? status)
               (check-body body operation-desc)
-              (:total body) => [1,2,3]
+              (check-range body)
               (:results body) =>[{operation 6}])))
 
     (fact "with an unknown operation"
@@ -68,6 +71,7 @@
              operation-desc (name operation)]
         (let [[status body] (request operation-desc)]
           (ok? status)
+          (check-range body)
           (check-body body operation-desc)
           (:results body) =>[{operation "123"}])))
 
@@ -77,7 +81,7 @@
           (let [[status body] (request operation-desc)]
                 (ok? status)
                 (check-body body operation-desc)
-                (:total body) => [1,2,3]
+                (check-range body)
                 (:results body) => [{operation -4}])))
 
       )))
