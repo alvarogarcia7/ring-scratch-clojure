@@ -54,7 +54,7 @@
     (fact "with an unknown operation"
       (let [operation :unknown
              operation-desc (name operation)]
-        (let [[status body] (get* app (str "/math/range/1/3?op=" operation-desc))]
+        (let [[status body] (get* app "/math/range/1/3" {:op operation-desc})]
           status => 200
           (:results body) =>[{operation "123"}]
           (:op body) => [operation-desc])))
