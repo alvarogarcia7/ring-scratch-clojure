@@ -51,7 +51,8 @@
              operation-desc (name operation)]
         (let [[status body] (get* app "/math/range/1/3" {:op operation-desc})]
               status => 200
-              body =>{:total [1,2,3] :results [{operation 6}], :op [operation-desc]}
+              (:op body) => [operation-desc]
+              (:total body) => [1,2,3]
               (:results body) =>[{operation 6}])))
 
     (fact "with an unknown operation"
