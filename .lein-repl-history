@@ -32,3 +32,4 @@
 str :op
 (str :op)
 (name :op)
+(pst *me)

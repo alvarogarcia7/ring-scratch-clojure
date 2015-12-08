@@ -63,4 +63,13 @@
           (:results body) =>[{operation "123"}]
           (:op body) => [operation-desc])))
 
+    (fact "with the subtraction operation"
+      (let [operation :sub
+               operation-desc (name operation)]
+          (let [[status body] (get* app "/math/range/1/3" {:op operation-desc})]
+                status => 200
+                (:op body) => [operation-desc]
+                (:total body) => [1,2,3]
+                (:results body) => [{operation -4}])))
+
       )))
