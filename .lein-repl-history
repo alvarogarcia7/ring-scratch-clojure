@@ -27,3 +27,5 @@
 (autotest)
 (use 'midje.repl)
 (autotest)
+(use 'midje.repl)
+(autotest)

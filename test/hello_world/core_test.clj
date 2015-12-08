@@ -49,4 +49,10 @@
       (let [[status body] (get* app "/math/range/1/3?op=sum")]
         status => 200
         body =>{:total [1,2,3] :results [{:sum 6}], :op ["sum"]}
-        (:results body) =>[{:sum 6}])))))
+        (:results body) =>[{:sum 6}])
+
+      (let [[status body] (get* app "/math/range/1/3?op=unknown")]
+        status => 200
+        (:results body) =>[{:unknown "123"}])
+
+      ))))
