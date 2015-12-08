@@ -53,6 +53,7 @@
 
       (let [[status body] (get* app "/math/range/1/3?op=unknown")]
         status => 200
-        (:results body) =>[{:unknown "123"}])
+        (:results body) =>[{:unknown "123"}]
+        (:op body) => ["unknown"])
 
       ))))
