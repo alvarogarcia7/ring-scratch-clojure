@@ -33,3 +33,6 @@ str :op
 (str :op)
 (name :op)
 (pst *me)
+a => 1
+2 => 1
+(pst *me)
