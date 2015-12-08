@@ -46,10 +46,13 @@
 (fact "generates ranges"
   (let [app hw/app]
     (fact "with the sum operation"
-      (let [[status body] (get* app "/math/range/1/3?op=sum")]
-        status => 200
-        body =>{:total [1,2,3] :results [{:sum 6}], :op ["sum"]}
-        (:results body) =>[{:sum 6}]))
+
+      (let [operation :sum
+             operation-desc (name operation)]
+        (let [[status body] (get* app "/math/range/1/3" {:op operation-desc})]
+              status => 200
+              body =>{:total [1,2,3] :results [{operation 6}], :op [operation-desc]}
+              (:results body) =>[{operation 6}])))
 
     (fact "with an unknown operation"
       (let [operation :unknown
